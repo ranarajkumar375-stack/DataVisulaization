@@ -58,7 +58,7 @@ if df.empty:
 # 3. CREATE DASH APP
 # ---------------------------------------------------------
 
-app = Dash(__name__)
+dash_app = Dash(__name__)
 app.layout = html.Div(children=[
 
     html.H1(
