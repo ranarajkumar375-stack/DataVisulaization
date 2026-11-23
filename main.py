@@ -59,7 +59,7 @@ if df.empty:
 # ---------------------------------------------------------
 
 dash_app = Dash(__name__)
-app.layout = html.Div(children=[
+dash_app.layout = html.Div(children=[
 
     html.H1(
         children="Airbnb Listings - Monterrey",
@@ -109,7 +109,7 @@ dcc.Graph(
 # 4. CALLBACK
 # ---------------------------------------------------------
 
-@app.callback(
+@dash_app.callback(
     Output(component_id='airbnb-map', component_property='figure'),
     Output(component_id='count', component_property='children'),
     Input(component_id='night-slider', component_property='value'),
@@ -167,5 +167,9 @@ def update_graph(nights, price_range):
 # 5. RUN APPLICATION
 # ---------------------------------------------------------
 
+# Vercel WSGI application
+app = dash_app.server
+
+# Run locally
 if __name__ == '__main__':
-    app.run(debug=True, port=8050)
+    dash_app.run(debug=True, port=8050)
